@@ -1,0 +1,122 @@
+﻿
+@{
+    <link href="https://unpkg.com/tailwindcss@2/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <link href="/css/StyleSheet.css" rel="stylesheet" type="text/css" />
+
+    <h2 style="font-size: x-large"><b>Фрактали</b></h2>
+
+
+    <br/>
+    <div class="row" style="margin-inline: 8%">
+                <div class="column">
+                         <div style="margin-inline:10%">
+                                  <div id="container" class="canvas w-full" style="margin-inline:10%;height:300px; border:1px solid #d3d3d3;">
+                                             <script type="text/javascript" src="~/js/snowflake.js"></script>
+                                  </div>
+
+                                   <h2 style="font-size: large;text-align: left;  float: left;width: 50%;">
+                                        Сніжинка Коха "навпаки"
+                                  </h2>
+                                      <button onclick="download()" class="download" id="save1">Завантажити</button>
+                                           <br/>
+                                  <p style="  float: left;width: 50%" class="column"></p>
+                                  <p style="opacity: 80%;font-size:medium;" class="row">Кількість кроків та координати центру:</p>
+                                    <div style="display:flex" class="row">
+                                            <input type="number" max="6" min="0" name="N" id="N" placeholder="Введи N" class="N trio border border-gray-200 p-1 rounded-xl" required>
+                                            <input type="number" max="100" min="-100" pattern="[0-9]*" name="X" id="X" value="" placeholder="Введи X" class="X trio border border-gray-200 p-1 rounded-xl" required>
+                                            <input type="number" max="100" min="-100" pattern="[0-9]*" name="Y" id="Y" value="" placeholder="Введи Y" class="Y trio border border-gray-200 p-1 rounded-xl" required>
+                                    </div>
+
+                                    <br />
+                                    <div class="row">
+                                         <button id="build" onclick="build()" class="column margin-bottom: 20px rounded-xl px-6 py-1 " style="font-size:large ;background-color: #DBFCFF; width: 40%; margin-right: 5%; margin-left: 10%">
+                                                     Побудувати
+                                        </button>
+                                        <button  onclick="saveAll()"class="column margin-left:10px margin-bottom: 20px rounded-xl px-6 py-1 " style="font-size:large ;background-color: #DBFCFF; width: 30%; margin-left: 5%">
+                                                Зберегти
+                                        </button>
+                                              <script>
+                                                    function saveAll(){
+                                                              download();
+                                                           document.getElementById("save2").click();
+                                                     }
+                                             </script>
+                                   </div>                                                                                                                                                                                           
+                         </div>
+                 </div>
+                                                           <div class="column" >                                                                                                                                                                                                  
+                                                                     <div style="margin-inline:10%">
+                                                                            <canvas id="c" class=" w-full" style="border:1px solid #d3d3d3;height:300px">   Your browser does not support the HTML canvas tag.   </canvas>
+                                                                              <script type="text/javascript" src="~/js/hfractal.js">
+                                                                              </script>
+                                                                             <a download="hfractal.jpg" href="" onclick="downloadCanvas(this)" class="download" id="save2">Завантажити</a>
+                                                                             <h2 style="font-size:large;text-align: left">Н-фрактал</h2>
+                                                                                <br/>
+                                                                            
+                                                                              
+                                                                        <div class="row">
+                                                                        <div class="column">
+                                                                               <p style="font-size:large"><b>Стиль:</b></p>
+                                                                              <div>
+                                                                                   <input type="radio" name="style" value="solid" id="solid" checked>
+                                                                                   <label for="solid" style="font-size:large">Ціла лінія</label>
+                                                                              </div>
+                                                                              <div>
+                                                                                   <input type="radio" name="style" value="dashed" id="dashed">
+                                                                                   <label for="dashed" style="font-size:large">Штрихи</label>
+                                                                              </div>
+                                                                              <div>
+                                                                                   <input type="radio" name="style" value="dots" id="dots">
+                                                                                   <label for="dots" style="font-size:large">Крапка</label>
+                                                                              </div>
+                                                                          </div>
+                                                                                 <div class="column">
+                                                                                        <p style="font-size:large"><b>Колір:</b></p><br/>
+                                                                                         <input type="color" id="colorPicker" onchange="clickColor(0, -1, -1, 5)" value="#ff0000" style="width:50px;">
+                                                                                 </div>
+                                                                        </div>
+                                                                        <br/>
+                                                                        <div class="row">
+                                                                       <a href= "/StudyComponent/Index">
+                                                                           <button class="column margin-bottom: 20px rounded-xl px-6  " style="font-size:medium ;background-color: #DBFCFF;color: black; width: 50%; margin-right: 5%; margin-left: 10%; opacity:70%">
+                                                                               Теоретичні відомості
+                                                                         </button>
+                                                                                </a>
+                                                                         <button id="myBtn" class="column margin-left:10px margin-bottom: 20px rounded-xl px-6  " style="font-size:medium ; color: black;background-color: #DBFCFF; width: 20%; margin-left: 5%;  opacity:70%">
+                                                                               Допомога
+                                                                         </button>
+                                                                         </div>
+                                                                         
+
+                    <div id="myModal" class="modal">
+                        <div class="modal-content rounded-xl">
+                            <br/>
+                            <div class="modal-header rounded-xl">
+                                <span class="close">X</span>
+                            <h2 style="text-align: center" class="text-xl">Допомога</h2>
+                            </div>
+                            <div class="modal-body">
+                            <br />
+                              <p>Перед тобою знаходяться два геометричні фрактали</p>
+                            <br />
+                                <p>Задай значення від 0 до 7 для кількості ітерацій та значення координат центру від -100 до 100(аби фрактал не вийшов за межі рамок і був видимий)</p>
+                            <br />
+                                <p>Також ти можеш зберегти один фрактал, натиснувши кнопку "Завантажити" під конкретним фракталом, або завантажити одразу два фрактали, натиснувши кнопку "Зберегти"</p>
+                            <br />
+                                <p>Якщо ти випадково ввів забагато ітерацій і сторінка зависла, просто перезавантаж її та спробуй знову з меншою кількістю ітерацій:)</p>
+                           <br/><br/>
+                             </div>
+                        </div>
+                    </div>
+                <script type="text/javascript" src="~/js/help.js"></script>
+
+
+                                                                     </div>
+                </div>
+    </div>
+    <br/>
+    <a href="/Home/Index">
+                                <div class="back rounded-xl px-10 py-1 " style="font-size:large">Назад</div>
+    </a>
+      }  

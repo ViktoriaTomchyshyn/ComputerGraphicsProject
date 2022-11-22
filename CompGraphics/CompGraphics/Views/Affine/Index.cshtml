@@ -1,0 +1,118 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    
+    <head>
+         <link href="https://unpkg.com/tailwindcss@2/dist/tailwind.min.css" rel="stylesheet">
+         <link href="/css/StyleSheet.css" rel="stylesheet" type="text/css" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <!-- JQuery -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- Bootstrap tooltips -->
+        <script type="text/javascript"
+                src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script type="text/javascript"
+                src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <!-- MDB core JavaScript -->
+        <script type="text/javascript"
+                src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.min.js"></script>
+    </head>
+    <body>
+                                <h2 style="font-size: x-large"><b>Афінні перетворення</b></h2>
+
+                                <div class="row" style="margin-inline: 8%">
+                                          <div class="column">
+                                          <h2 style="font-size: large"class="row">Координати кінців діагоналі квадрата:</h2>
+                                                  <br/> 
+                                               <div style="display:flex" class="row">
+                                                        <input style="margin-left: 20%" type="number" max="100" min="-100" pattern="[0-9]*" name="X1" id="X1" value="1" placeholder="Введи X1" class="X1 numberDiagonal column border border-gray-200 p-1 rounded-xl" required>
+                                                        <input style="margin-inline: 8%" type="number" max="100" min="-100" pattern="[0-9]*" name="Y1" id="Y1" value="1" placeholder="Введи Y1" class="Y1 numberDiagonal column border border-gray-200 p-1 rounded-xl" required>
+                                                </div>
+                                                   <br/>
+                                                 <div style="display:flex" class="row">
+                                                        <input style="margin-left: 20%" type="number" max="100" min="-100" pattern="[0-9]*" name="X2" id="X2" value="3" placeholder="Введи X2" class="X2 numberDiagonal column border border-gray-200 p-1 rounded-xl" required>
+                                                        <input style="margin-inline: 8%" type="number" max="100" min="-100" pattern="[0-9]*" name="Y2" id="Y2" value="3" placeholder="Введи Y2" class="Y2 numberDiagonal column border border-gray-200 p-1 rounded-xl" required>
+                                                </div>
+                                                    <br />
+                                                 <h2 style="font-size: large; alignment: left" class="row">Масштабування:</h2>
+                                                  <br/> 
+                                                  <div style="display:flex" class="row">
+                                                        <input style="margin-left: 20%" type="number" max="100" min="-100" pattern="[0-9]*" name="X" id="X" value="1" placeholder="Введи X" class="X numberScale column border border-gray-200 p-1 rounded-xl" required>
+                                                        <input style="margin-inline: 8%" type="number" max="100" min="-100" pattern="[0-9]*" name="Y" id="Y" value="1" placeholder="Введи Y" class="Y numberScale column border border-gray-200 p-1 rounded-xl" required>
+                                                </div>
+                                                  <br />
+                                                  <h2 style="font-size: large; alignment: left"class="row">Поворот:</h2>
+                                                  <br />
+                                                   <input style=" width: 40%; margin-left: 35%;" type="number" max="360" min="0" pattern="[0-9]*" name="Degrees" id="Degrees" value="0" placeholder="Введи градуси" class="Degrees numberAngle  column border border-gray-200 p-1 rounded-xl" required>
+                                                   <br />   <br />        <br />
+                <button onclick="interval()" id="intervalBtn" class="intervalBtn m rounded-xl px-6 py-3 " style="font-size:large ;background-color: #DBFCFF; width: 40%; margin-left: 35%; margit-top: 15px;  text-align:center;">
+                                                                Перевертати
+                                                    </button>
+                                                      <br /> <br /> <br /> <br />
+                                                    <p id="check"></p>
+                                                      <br /> <br />
+                                           </div>
+                                             <br/>
+
+                                          <div class="column">
+                                        <div style="margin-inline:10%">
+                                        <canvas id="canvas"  width="600" height="600"class=" w-full rounded-xl" style="border:1px solid #d3d3d3">   Your browser does not support the HTML canvas tag.   </canvas>
+
+                                    
+                                             <a download="affine_transformation.jpg" href="" onclick="downloadCanvas(this)" class="download" id="save">Завантажити</a>
+                                            <br />
+                                            <div class="row">
+                                                     <br /> <br />
+                                                <a href="/StudyComponent/Index">
+                                                    <button class="column margin-bottom: 20px rounded-xl px-6  " style="font-size:medium ;background-color: #DBFCFF;color: black; width: 50%; margin-right: 5%; margin-left: 10%; opacity:70%">
+                                                        Теоретичні відомості
+                                                    </button>
+                                                </a>
+                                                <button id="myBtn" class="column margin-left:10px margin-bottom: 20px rounded-xl px-6  " style="font-size:medium ; color: black;background-color: #DBFCFF; width: 20%; margin-left: 5%;  opacity:70%">
+                                                    Допомога
+                                                </button>
+                                                </div>
+                                           </div>
+                                           </div>
+                               </div>
+
+                         
+
+
+                                <div id="myModal" class="modal">
+                                            <div class="modal-content rounded-xl">
+                                                <br />
+                                                <div class="modal-header rounded-xl">
+                                                    <span class="close">X</span>
+                                                    <h2 style="text-align: center" class="text-xl">Допомога</h2>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <br />
+                                                    <p>Введи координати країв діагоналі квадрата та координати для зсуву та масштабування, аби переглянути результат всього афінного перетворення.</p>
+                                                    <br />
+                                                    <br /><br />
+                                                </div>
+                                            </div>
+                                </div>
+
+
+              
+
+
+                                <script type="text/javascript" src="~/js/help.js"></script>
+                                <script type="text/javascript" src="~/js/affine.js"></script>
+                               
+                                <br />
+
+
+
+                    <a href="/Home/Index">
+                        <div class="back rounded-xl px-10 py-1 " style="font-size:large">Назад</div>
+                    </a>
+    </body>
+}
