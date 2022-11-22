@@ -1,0 +1,106 @@
+﻿@{
+    <head>
+                    <link href="https://unpkg.com/tailwindcss@2/dist/tailwind.min.css" rel="stylesheet">
+                    <link href="/css/StyleSheet.css" rel="stylesheet" type="text/css" />
+
+    </head>
+    <body>
+                    <h2 style="font-size: x-large"><b>Зміна колірної схеми</b></h2>
+
+                    <div class="row" style="margin-inline: 8%">
+                              <div class="column">
+                                      <div style="margin-inline:10%">
+                            <canvas id="canvas1"class=" w-full rounded-xl" style="border:1px solid #d3d3d3;height:300px">   Your browser does not support the HTML canvas tag.  </canvas>
+
+                                    <h2 style="font-size: large;text-align: left;  float: left;width: 50%;">
+                                       CMYK
+                                    </h2>
+                                  <a download="rgb_cmyk_rgb.jpg" href="" onclick="downloadCanvas(this)" class="download" id="save1">Завантажити</a>
+                                    <br />
+                                     <br/><br/>
+                               <input type="file" id="imageLoader" name="imageLoader" accept="image/*" class="custom-file-input px-70" style="margin-inline:5%" />
+                                <button id="transform" onclick="rgb2cmyk2rgb()" class="column margin-left:10px margin-bottom: 20px rounded-xl px-6" style="font-size:medium; color:#393E41;background-color: #9EE7EC; width: 20%; margin-left: 5%">
+                                    Перевести
+                                </button>
+
+                               </div>
+                                 <br/>
+
+
+
+                              </div>
+                              <div class="column">
+                            <div style="margin-inline:10%">
+                            <canvas id="canvas2" class=" w-full rounded-xl" style="border:1px solid #d3d3d3;height:300px">   Your browser does not support the HTML canvas tag.   </canvas>
+
+                                <h2 style="font-size: large;text-align: left;  float: left;width: 50%;">
+                                    HSV
+                                </h2>
+                                 <a download="rgb_hsv_rgb.jpg" href="" onclick="downloadCanvas2(this)" class="download" id="save2">Завантажити</a>
+                                <br />
+                                <div class="row">
+                                         <br /> <br />
+                                    <a href="/StudyComponent/Index">
+                                        <button class="column margin-bottom: 20px rounded-xl px-6  " style="font-size:medium ;background-color: #DBFCFF;color: black; width: 50%; margin-right: 5%; margin-left: 10%; opacity:70%">
+                                            Теоретичні відомості
+                                        </button>
+                                    </a>
+                                    <button id="myBtn" class="column margin-left:10px margin-bottom: 20px rounded-xl px-6  " style="font-size:medium ; color: black;background-color: #DBFCFF; width: 20%; margin-left: 5%;  opacity:70%">
+                                        Допомога
+                                    </button>
+                                    </div>
+                               </div>
+                               </div>
+                   </div>
+
+                    <div class="row" style="margin-inline: 14%">
+                        <label for="BlueSlider">Насиченість по синьому (<span id="BlueValue">0</span>)</label>
+                        <br>
+                        <input id="BlueSlider" type="range" value="50" min="0" max="100" class="w-full">
+                    <label style="margin-top:5px; opacity:80%; text-align: left;  float: left;width: 50%;">0</label>
+                    <label class="download" style="margin-top:5px">100</label>
+                    </div>
+
+                    <div class="row" style="margin-inline: 20%">
+                    <label style="margin-inline:7%;font-size: large;">RGB: <span id="RGBValue">0, 0, 0</span></label>
+                    <label style="margin-inline:7%;font-size: large;">CMYK: <span id="CMYKValue">0, 0, 0</span></label>
+                    <label style="margin-inline:7%;font-size: large;">HSV: <span id="HSVValue">0, 0, 0</span></label>
+                    </div>
+
+
+                    <div id="myModal" class="modal">
+                                <div class="modal-content rounded-xl">
+                                    <br />
+                                    <div class="modal-header rounded-xl">
+                                        <span class="close">X</span>
+                                        <h2 style="text-align: center" class="text-xl">Допомога</h2>
+                                    </div>
+                                    <div class="modal-body">
+                                        <br />
+                                        <p>Щоб почати роботу, слід завантажити фото. Зліва знизу є кнопка "Вибрати фото", аби завантажити зображення, з яким ти хочеш працювати</p>
+                                        <br />
+                                        <p>Також ти можеш навести на цю кнопку та побачити назву вибраного файлу</p>
+                                        <br />
+                                         <p>Тепер, коли ти завантажив фото, перед тобою знаходяться два зображення. Натисни кнопку "Перевести". Зображення фактично не змінились. Це означає, що конвертація відбулась успішно.
+                                         Перше фото - конвертовано із RGB в CMYK та назад в RGB. Колірну модель RGB застосовують для моніторів, а CMYK - для принтерів. Друге фото конвертовано із результато конвертації першого фото у колірну модель HSV, а потім назад в RGB. 
+                                         Детальніше про модель HSV та інші колірні моделі можна дізнатись в теоретичних відомостях.</p>
+                                         <br />
+                                        <p>Повзунок внизу дозволяє збільшити та зменшити насиченість по синьому на другому фото, аби повернути друге фото до початково стану - натисни ще раз кнопку "Перевести"</p>
+                                         <br />
+                                        <br /><br />
+                                    </div>
+                                </div>
+                    </div>
+
+
+  
+
+
+                    <script type="text/javascript" src="~/js/help.js"></script>
+                    <script type="text/javascript" src="~/js/uploadImage.js"></script>
+                    <br />
+                    <a href="/Home/Index">
+                            <div class="back rounded-xl px-10 py-1 " style="font-size:large">Назад</div>
+                    </a>
+    </body>
+}
